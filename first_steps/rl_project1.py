@@ -22,12 +22,14 @@ env = gym.make("CartPole-v1")
 states = env.observation_space.shape[0]
 actions = env.action_space.n
 
+# Описание модели
 model = Sequential()
 model.add(Flatten(input_shape=(1, states)))
 model.add(Dense(24, activation='relu'))
 model.add(Dense(24, activation='relu'))
 model.add(Dense(actions, activation='linear'))
 
+# описание агента
 agent = DQNAgent(
     model=model,
     memory=SequentialMemory(limit=50000, window_length=1),
@@ -37,6 +39,7 @@ agent = DQNAgent(
     target_model_update=0.01
 )
 
+# запуск обучения модели
 agent.compile(Adam(lr=0.001), metrics=["mae"])
 agent.fit(env, nb_steps=100_000, visualize=False, verbose=1)
 
@@ -44,19 +47,3 @@ results = agent.test(env, nb_episodes=10, visualize=True)
 print(np.mean(results.hystory["episode_reward"]))
 
 env.close()
-
-# ep = 10
-# for episode in range(1, ep+1):
-#     state = env.reset()
-#     done = False
-#     score = 0
-#
-#     while not done:
-#         action = random.choice([0, 1])
-#         _, reward, done, _ = env.step(action)
-#         score += reward
-#         env.render()
-#
-#     print(f"Episode -- {episode}, Score -- {score}")
-#
-# env.close()
