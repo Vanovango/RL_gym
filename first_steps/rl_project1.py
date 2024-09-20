@@ -45,3 +45,4 @@ results = agent.test(env, nb_episodes=10, visualize=True)
 print(np.mean(results.hystory["episode_reward"]))
 
 env.close()
+
