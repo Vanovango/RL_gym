@@ -41,7 +41,7 @@ agent = DQNAgent(
 
 # запуск обучения модели
 agent.compile(Adam(lr=0.001), metrics=["mae"])
-agent.fit(env, nb_steps=100_000, visualize=False, verbose=1)
+agent.fit(env, nb_steps=10_000, visualize=False, verbose=1)
 
 results = agent.test(env, nb_episodes=10, visualize=True)
 print(np.mean(results.hystory["episode_reward"]))
