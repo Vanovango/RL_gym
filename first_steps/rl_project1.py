@@ -15,7 +15,7 @@ from rl.policy import BoltzmannQPolicy
 from rl.memory import SequentialMemory
 
 
-env = gym.make("CartPole-v1")
+env = gym.make("Ant-v2")
 
 states = env.observation_space.shape[0]
 actions = env.action_space.n
