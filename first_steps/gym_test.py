@@ -1,2 +1,5 @@
-from gym import envs
-print(envs.registry.all())
+import gym
+
+env = gym.make('SpaceInvaders-v0')
+
+env.reset()
